@@ -28,6 +28,7 @@
 <body>
   <h1>Electron Auto Update Example has worked!!!</h1>
   <p id="version"></p>
+  <p id="child-process"></p>
   <div id="notification" class="hidden">
     <p id="message"></p>
     <button id="close-button" onClick="closeNotification()">
@@ -40,6 +41,7 @@
   <script>
     const { ipcRenderer } = require('electron');
     const version = document.getElementById('version');
+    const childProcess = document.getElementById('child-process')
     const notification = document.getElementById('notification');
     const message = document.getElementById('message');
     const restartButton = document.getElementById('restart-button');
@@ -70,5 +72,11 @@
     function restartApp() {
       ipcRenderer.send('restart_app');
     }
+    const spawn = require('child_process').spawn
+    const process = spawn('engine/main')
+
+    process.stdout.on('data', (data) => {
+        childProcess.innerText = data.toString()
+    })
   </script>
 </body>
