@@ -44,7 +44,7 @@
     const { app } = require('electron').remote
     const version = document.getElementById('version');
     const childProcess = document.getElementById('child-process')
-    const path = null
+    const path = document.getElementById('path')
     const notification = document.getElementById('notification');
     const message = document.getElementById('message');
     const restartButton = document.getElementById('restart-button');
@@ -54,10 +54,10 @@
       ipcRenderer.removeAllListeners('app_version');
       version.innerText = 'Version ' + arg.version;
     });
+    path.innerText = 'AppPath: ' + app.getAppPath() + '   UserPath: ' + app.getPath('userData') + '   appData: ' + app.getPath('appData') + '   exePath: ' + app.getPath('exe')
 
     const spawn = require('child_process').spawn
-    console.log(path + 'engine/main')
-    const process = spawn(app.getAppPath() + '/engine/main')
+    const process = spawn('/engine/main')
 
     process.stdout.on('data', (data) => {
         childProcess.innerText = data.toString()
