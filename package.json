@@ -1,6 +1,6 @@
 {
   "name": "electron-auto-update-meu-test-example",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
   "main": "main.js",
   "repository": {
@@ -12,9 +12,6 @@
     "start": "electron .",
     "build": "electron-builder build --win --publish never",
     "deploy": "electron-builder build --win --publish always"
-  },
-  "build": {
-    "extraFiles": "dist"
   },
   "author": "",
   "license": "ISC",
