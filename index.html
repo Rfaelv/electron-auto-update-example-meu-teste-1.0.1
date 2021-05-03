@@ -56,6 +56,12 @@
     });
     path.innerText = 'AppPath: ' + app.getAppPath() + '   UserPath: ' + app.getPath('userData') + '   appData: ' + app.getPath('appData') + '   exePath: ' + app.getPath('exe')
 
+    ipcRenderer.send('data');
+    ipcRenderer.on('data', (event, data) => {
+      ipcRenderer.removeAllListeners('data');
+      path.innerText += '   Data:' + data;
+    });
+
     const spawn = require('child_process').spawn
     const process = spawn('engine/main')
 

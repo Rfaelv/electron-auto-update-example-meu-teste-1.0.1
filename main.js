@@ -2,7 +2,7 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const { autoUpdater } = require('electron-updater');
 const process = require('process')
 
-console.log(process.argv)
+const data = process.argv
 
 let mainWindow;
 
@@ -52,4 +52,8 @@ autoUpdater.on('update-downloaded', () => {
 
 ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();
+});
+
+ipcMain.on('data', (event) => {
+  event.sender.send('data', data);
 });
