@@ -57,3 +57,11 @@ ipcMain.on('restart_app', () => {
 ipcMain.on('data', (event) => {
   event.sender.send('data', data);
 });
+
+const fs = require('fs')
+const dt = {a:"funcionou"}
+// fs.writeFileSync('arquivo.buck', JSON.stringify(dt));
+fs.readFile('arquivo.buck', (err, d) => {
+  if (err) throw err;
+  console.log(JSON.parse(d).a);
+});
